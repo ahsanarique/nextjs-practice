@@ -7,11 +7,13 @@ const BlogPage = () => {
   return (
     <div>
       <h1>Blog Page</h1>
-      <ul>
-        {blogId.map((id) => (
-          <li key={id}>Blog: {id}</li>
-        ))}
-      </ul>
+      {blogId && (
+        <ul>
+          {blogId.map((id) => (
+            <li key={id}>Blog: {id}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

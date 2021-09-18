@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 function HomePage() {
   return (
@@ -12,6 +13,14 @@ function HomePage() {
 
       <main>
         <h1>Home - index.js</h1>
+        <ul>
+          <li>
+            <Link href="/portfolio">Portfolio</Link>
+          </li>
+          <li>
+            <Link href="/clients">Clients</Link>
+          </li>
+        </ul>
       </main>
     </div>
   );

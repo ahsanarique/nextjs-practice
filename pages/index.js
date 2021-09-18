@@ -1,7 +1,12 @@
+import fs from "fs/promises";
+import path from "path";
+
 import Head from "next/head";
 import Link from "next/link";
 
-function HomePage() {
+function HomePage(props) {
+  const { products } = props;
+
   return (
     <div>
       <Head>
@@ -21,9 +26,29 @@ function HomePage() {
             <Link href="/clients">Clients</Link>
           </li>
         </ul>
+
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>{product.title}</li>
+          ))}
+        </ul>
       </main>
     </div>
   );
+}
+
+// getStaticProps: Prepares the props for the HomePage function. Gets executed first. Then the HomePage component gets executed.
+
+export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), "fakeData", "fakeData.json");
+  const jsonData = await fs.readFile(filePath);
+  const data = JSON.parse(jsonData);
+
+  return {
+    props: {
+      products: data.products,
+    },
+  };
 }
 
 export default HomePage;

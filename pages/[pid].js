@@ -4,6 +4,12 @@ import path from "path";
 const ProductDetailPage = (props) => {
   const { loadedProduct } = props;
 
+  // Quicker fallback approach but not necessary fully loads everything before showing
+
+  if (!loadedProduct) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
       <h1>{loadedProduct.title}</h1>
@@ -36,7 +42,7 @@ export async function getStaticPaths() {
       { params: { pid: "p2" } },
       { params: { pid: "p3" } },
     ],
-    fallback: false,
+    fallback: true, // or a string instead of boolean. Slower approach but loads fully finished page.
   };
 }
 
